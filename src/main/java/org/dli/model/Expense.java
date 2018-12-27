@@ -1,3 +1,5 @@
+package org.dli.model;
+
 import java.util.Date;
 
 import javax.persistence.DiscriminatorValue;

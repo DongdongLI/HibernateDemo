@@ -10,12 +10,24 @@ buildscript {
 	}
 }
 
+plugins {
+	id 'net.ltgt.apt' version '0.10'
+}
+
 apply plugin: 'java'
 apply plugin: 'eclipse'
 apply plugin: 'org.springframework.boot'
 apply plugin: 'io.spring.dependency-management'
 
-group = 'org.javacodegeeks'
+springBoot {
+    mainClassName = 'org.dli.main.GradleHibernateJapApplication'
+}
+
+
+compileJava {
+	options.compilerArgs << '-parameters'
+}
+group = 'org.dli'
 version = '0.0.1-SNAPSHOT'
 sourceCompatibility = 1.8
 
@@ -24,8 +36,15 @@ repositories {
 }
 
 dependencies {
-	compile('org.springframework.boot:spring-boot-starter-data-jpa')
-    compile 'mysql:mysql-connector-java'
-	compileOnly('org.projectlombok:lombok')
+	compile('org.springframework.boot:spring-boot-starter-data-jpa:1.5.6.RELEASE')
+    compile 'mysql:mysql-connector-java:5.1.13'
+//    compile 'javax.xml.bind:jaxb-api:2.3.0'
+//    compile 'com.sun.xml.bind:jaxb-core:2.2.11'
+//    compile 'com.sun.xml.bind:jaxb-impl:2.2.11'
+//    compile 'javax.activation:activation:1.1.1'
+//	compile 'org.hibernate:hibernate-core:4.1.4.Final'
+//	compile 'org.hibernate:hibernate-entitymanager:5.2.3.Final'
+	compileOnly 'org.projectlombok:lombok:1.18.4'
+	annotationProcessor 'org.projectlombok:lombok:1.18.4'
 	testCompile('org.springframework.boot:spring-boot-starter-test')
 }
